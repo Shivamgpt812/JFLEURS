@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <!-- Homepage -->
+    <url>
+        <loc>https://jfleursindia.com/</loc>
+        <lastmod>2025-05-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://jfleursindia.com/assets/img/preview.png</image:loc>
+            <image:title>JFLEURS INDIA PVT. LTD - Premium Pond Fish Food</image:title>
+            <image:caption>Scientifically formulated premium fish nutrition for vibrant colors and clean water</image:caption>
+        </image:image>
+    </url>
+
+    <!-- Shop / Products Catalog -->
+    <url>
+        <loc>https://jfleursindia.com/shop.html</loc>
+        <lastmod>2025-05-15</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <image:image>
+            <image:loc>https://jfleursindia.com/assets/img/product-1.webp</image:loc>
+            <image:title>1mm Micro Floating Pellets</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://jfleursindia.com/assets/img/product-2.webp</image:loc>
+            <image:title>2mm Small Floating Pellets</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://jfleursindia.com/assets/img/product-3.webp</image:loc>
+            <image:title>3mm Medium Floating Pellets</image:title>
+        </image:image>
+        <image:image>
+            <image:loc>https://jfleursindia.com/assets/img/product-4.webp</image:loc>
+            <image:title>4mm Large Floating Pellets</image:title>
+        </image:image>
+    </url>
+
+    <!-- Individual Product Details -->
+    <url>
+        <loc>https://jfleursindia.com/product-detail.html?slug=1mm-fish-food</loc>
+        <lastmod>2025-05-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://jfleursindia.com/product-detail.html?slug=2mm-fish-food</loc>
+        <lastmod>2025-05-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://jfleursindia.com/product-detail.html?slug=3mm-fish-food</loc>
+        <lastmod>2025-05-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+    <url>
+        <loc>https://jfleursindia.com/product-detail.html?slug=4mm-fish-food</loc>
+        <lastmod>2025-05-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.85</priority>
+    </url>
+
+    <!-- About Us Page -->
+    <url>
+        <loc>https://jfleursindia.com/about.html</loc>
+        <lastmod>2025-05-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Blog & Care Guides -->
+    <url>
+        <loc>https://jfleursindia.com/blog.html</loc>
+        <lastmod>2025-05-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Contact Page -->
+    <url>
+        <loc>https://jfleursindia.com/contact.html</loc>
+        <lastmod>2025-05-15</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+</urlset>

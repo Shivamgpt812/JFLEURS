@@ -1,0 +1,1575 @@
+/* ==========================================================================
+   AQUAPETS - MODERN AQUATIC HERO EFFECTS & REALISTIC SWIMMING FISH ENGINE
+   ========================================================================== */
+
+/* Hide Default Right-Side Scrollbar across all browsers */
+html,
+body {
+    scrollbar-width: none !important; /* Firefox */
+    -ms-overflow-style: none !important; /* IE and Edge Legacy */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
+}
+
+/* Hero Section Base Positioning & 3D Perspective */
+.section_home-header {
+    position: relative !important;
+    overflow: hidden !important;
+    background: linear-gradient(180deg, #fff9f0 0%, #fff4e4 50%, #f6e8d2 100%) !important;
+    perspective: 1200px;
+}
+
+/* Canvas Background for Bubbles, Ripples & Fish Trails */
+.hero-aquatic-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Ensure content stays comfortably above canvas */
+.section_home-header .padding-global {
+    position: relative;
+    z-index: 3;
+}
+
+/* ==========================================================================
+   REALISTIC SWIMMING FISH (.home-header_dog)
+   ========================================================================== */
+.home-header_dog {
+    z-index: 4 !important;
+    filter: drop-shadow(0 20px 35px rgba(71, 46, 30, 0.16));
+    transform-origin: 30% 55%; /* Pivots naturally where the head/fin meets the body */
+    will-change: transform;
+    pointer-events: auto !important;
+    cursor: grab;
+    user-select: none;
+    -webkit-user-drag: none;
+    transition: filter 0.3s ease;
+}
+
+.home-header_dog:hover {
+    filter: drop-shadow(0 25px 40px rgba(119, 194, 243, 0.35)) brightness(1.03);
+}
+
+.home-header_dog:active {
+    cursor: grabbing;
+}
+
+/* ==========================================================================
+   FLOATING FOOD PELLETS CLUSTER (.home-header_bone)
+   ========================================================================== */
+.home-header_bone {
+    z-index: 5 !important;
+    transform-origin: 50% 50%;
+    will-change: transform;
+    pointer-events: auto !important;
+    cursor: pointer;
+    filter: drop-shadow(0 8px 18px rgba(71, 46, 30, 0.15));
+    transition: filter 0.3s ease;
+}
+
+.home-header_bone:hover {
+    filter: drop-shadow(0 12px 24px rgba(239, 84, 56, 0.4)) scale(1.05);
+}
+
+/* Ambient Water Light Shimmer (Caustics Overlay) */
+.hero-caustics-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 20%, rgba(119, 194, 243, 0.1) 0%, transparent 60%),
+                radial-gradient(circle at 80% 60%, rgba(255, 159, 167, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 2;
+    animation: causticDrift 8s ease-in-out infinite alternate;
+}
+
+@keyframes causticDrift {
+    0% {
+        opacity: 0.6;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.05) translateY(-8px);
+    }
+}
+
+/* ==========================================================================
+   MULTI-LAYER FLOWING SVG WAVE AT HERO BOTTOM EDGE (SEAMLESS & CONTINUOUS)
+   ========================================================================== */
+.hero-wave-container {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 6;
+    pointer-events: none;
+}
+
+.hero-wave-svg {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 75px;
+    min-height: 60px;
+    max-height: 140px;
+}
+
+@media screen and (min-width: 768px) {
+    .hero-wave-svg {
+        height: 105px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .hero-wave-svg {
+        height: 125px;
+    }
+}
+
+/* Seamless Continuous Parallax Wave Flow */
+.hero-wave-parallax > use {
+    animation: moveForever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.hero-wave-parallax > use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 9s;
+}
+
+.hero-wave-parallax > use:nth-child(2) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+
+.hero-wave-parallax > use:nth-child(3) {
+    animation-delay: -5s;
+    animation-duration: 17s;
+}
+
+.hero-wave-parallax > use:nth-child(4) {
+    animation-delay: -6s;
+    animation-duration: 23s;
+}
+
+@keyframes moveForever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+/* Subtle Interactive Button Shimmer on Hero */
+.section_home-header .button {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.section_home-header .button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 25px rgba(255, 159, 167, 0.4);
+}
+
+.section_home-header .button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 40%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: rotate(25deg);
+    transition: all 0.75s ease;
+    pointer-events: none;
+}
+
+.section_home-header .button:hover::after {
+    left: 130%;
+}
+
+/* ==========================================================================
+   ANIMATED STAT COUNTERS WITH GLOWING BUBBLES
+   ========================================================================== */
+.section_stats-counter {
+    position: relative;
+    background-color: var(--primary--beige, #fff6e8);
+    overflow: hidden;
+}
+
+.stats-counter_wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+@media screen and (max-width: 991px) {
+    .stats-counter_wrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .stats-counter_wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.stat-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 3.25rem 2rem 2.75rem;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(71, 46, 30, 0.06), 0 0 25px rgba(119, 194, 243, 0.12);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 22px 45px rgba(71, 46, 30, 0.1), 0 0 35px rgba(119, 194, 243, 0.35);
+}
+
+/* Ambient Bubble Glow Halo inside Card */
+.stat-card_bubble-glow {
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(119, 194, 243, 0.3) 0%, rgba(255, 159, 167, 0.15) 50%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    pointer-events: none;
+    animation: statGlowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes statGlowPulse {
+    0% {
+        transform: translateX(-50%) scale(0.85);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateX(-50%) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Floating Mini Bubbles in Stat Cards */
+.stat-card_bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.stat_bubble {
+    position: absolute;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(119, 194, 243, 0.35));
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(119, 194, 243, 0.4);
+}
+
+.stat_bubble.b1 {
+    width: 18px;
+    height: 18px;
+    left: 15%;
+    bottom: -20px;
+    animation: statBubbleRise 5s linear infinite;
+    animation-delay: 0.5s;
+}
+
+.stat_bubble.b2 {
+    width: 12px;
+    height: 12px;
+    right: 18%;
+    bottom: -15px;
+    animation: statBubbleRise 4.2s linear infinite;
+    animation-delay: 1.8s;
+}
+
+.stat_bubble.b3 {
+    width: 8px;
+    height: 8px;
+    left: 75%;
+    bottom: -10px;
+    animation: statBubbleRise 6s linear infinite;
+    animation-delay: 2.7s;
+}
+
+@keyframes statBubbleRise {
+    0% {
+        transform: translateY(0) scale(0.8);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.85;
+    }
+    85% {
+        opacity: 0.85;
+    }
+    100% {
+        transform: translateY(-240px) scale(1.15);
+        opacity: 0;
+    }
+}
+
+.stat-card_icon-wrap {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.25rem;
+    background: linear-gradient(135deg, #ffffff, #f0f7fd);
+    border: 1.5px solid rgba(119, 194, 243, 0.35);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 18px rgba(119, 194, 243, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+.stat-card_icon {
+    font-size: 1.85rem;
+    line-height: 1;
+}
+
+.stat-card_number-wrap {
+    font-family: var(--_typography---font-family--primary, Anton, sans-serif);
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--primary--brown, #472e1e);
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    letter-spacing: 0.5px;
+}
+
+.stat-card_number {
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+}
+
+.stat-card_suffix {
+    color: var(--secondary--orange, #ef5438);
+    margin-left: 2px;
+}
+
+.stat-card_label {
+    font-family: var(--_typography---font-family--primary, Anton, sans-serif);
+    font-size: 1.35rem;
+    text-transform: uppercase;
+    color: var(--primary--brown, #301e13);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+    letter-spacing: 0.5px;
+}
+
+.stat-card_sub {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: #6b635b;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* ==========================================================================
+   FLOWING LIQUID WAVE READING PROGRESS BAR
+   ========================================================================== */
+.liquid-reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 12px;
+    z-index: 99999;
+    pointer-events: none;
+    background: transparent;
+    overflow: hidden;
+}
+
+.liquid-reading-progress_bar {
+    height: 100%;
+    width: 0%;
+    position: relative;
+    border-radius: 0 0 8px 0;
+    transition: width 0.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.liquid-wave-crest-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    filter: drop-shadow(0 4px 8px rgba(0, 210, 255, 0.45));
+}
+
+.liquid-wave-crest-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300%;
+    height: 100%;
+    display: block;
+}
+
+.liquid-wave-layer-1 {
+    fill: rgba(119, 194, 243, 0.7);
+    animation: liquidWaveFlow 4s linear infinite;
+}
+
+.liquid-wave-layer-2 {
+    fill: #00d2ff;
+    animation: liquidWaveFlow 2.8s linear infinite reverse;
+    opacity: 0.9;
+}
+
+@keyframes liquidWaveFlow {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%);
+    }
+}
+
+/* ==========================================================================
+   INTERACTIVE BLOG CARDS & HOVER EFFECTS
+   ========================================================================== */
+.blog-list_block-wrap {
+    position: relative;
+    border-radius: 24px;
+    background: #ffffff;
+    border: 1px solid rgba(221, 216, 210, 0.7);
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(71, 46, 30, 0.04);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    overflow: hidden;
+}
+
+.blog-list_block-wrap:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(71, 46, 30, 0.09), 0 0 30px rgba(119, 194, 243, 0.2);
+    border-color: rgba(119, 194, 243, 0.6);
+}
+
+.blog-list_img-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.blog-list_img-wrap {
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.blog-list_img {
+    transition: transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s ease !important;
+}
+
+.blog-list_block-wrap:hover .blog-list_img {
+    transform: scale(1.08) !important;
+    filter: brightness(1.03) saturate(1.06);
+}
+
+/* Glassmorphic Reading Time Badge */
+.blog-card_badge {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--primary--brown, #301e13);
+    box-shadow: 0 4px 14px rgba(71, 46, 30, 0.12);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.3s ease;
+    pointer-events: none;
+}
+
+.blog-list_block-wrap:hover .blog-card_badge {
+    transform: translateY(-2px) scale(1.04);
+    background: #ffffff;
+    box-shadow: 0 6px 18px rgba(119, 194, 243, 0.35);
+}
+
+.badge_clock {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+/* Slide-out Animated Read Button Arrow */
+.blog-read-btn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-btn-arrow {
+    display: inline-block;
+    font-size: 1.15rem;
+    line-height: 1;
+    transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.blog-list_block-wrap:hover .blog-btn-arrow {
+    transform: translateX(6px);
+}
+
+.blog-list_block-wrap:hover .blog-read-btn {
+    background-color: #5ab1ea !important;
+    box-shadow: 0 8px 20px rgba(119, 194, 243, 0.4);
+}
+
+/* ==========================================================================
+   FLOATING AQUATIC CHATBOT WIDGET (WHATSAPP +917011976671)
+   ========================================================================== */
+.aquatic-chatbot-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99998;
+    font-family: inherit;
+}
+
+/* Floating Action Trigger Button */
+.aquatic-chat-toggle {
+    position: relative;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    border: none;
+    box-shadow: 0 8px 28px rgba(18, 140, 126, 0.45), 0 0 0 0 rgba(37, 211, 102, 0.6);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    animation: chatPulseHalo 2.5s infinite;
+}
+
+.aquatic-chat-toggle:hover {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 12px 32px rgba(18, 140, 126, 0.6), 0 0 20px rgba(37, 211, 102, 0.4);
+}
+
+.aquatic-chat-toggle:active {
+    transform: scale(0.95);
+}
+
+.aquatic-chat-icon, .aquatic-chat-close-icon {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.aquatic-chat-close-icon {
+    display: none;
+    width: 24px;
+    height: 24px;
+}
+
+.aquatic-chatbot-container.is-open .aquatic-chat-icon {
+    display: none;
+}
+
+.aquatic-chatbot-container.is-open .aquatic-chat-close-icon {
+    display: block;
+}
+
+/* Glowing Pulsing Ring */
+@keyframes chatPulseHalo {
+    0% {
+        box-shadow: 0 8px 24px rgba(18, 140, 126, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+    70% {
+        box-shadow: 0 8px 24px rgba(18, 140, 126, 0.4), 0 0 0 14px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 8px 24px rgba(18, 140, 126, 0.4), 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Online Indicator Dot */
+.aquatic-chat-status-dot {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 14px;
+    height: 14px;
+    background: #00ff88;
+    border: 2.5px solid #ffffff;
+    border-radius: 50%;
+}
+
+/* Notification Count Badge */
+.aquatic-chat-badge {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    background: #ff4757;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    animation: chatBadgeBounce 1s ease-in-out infinite alternate;
+}
+
+@keyframes chatBadgeBounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-3px); }
+}
+
+/* Teaser Greeting Popup Bubble (Shows Only on Hover) */
+.aquatic-chat-teaser {
+    position: absolute;
+    bottom: 74px;
+    right: 0;
+    width: 280px;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(119, 194, 243, 0.35);
+    border-radius: 18px;
+    padding: 14px 16px;
+    box-shadow: 0 16px 36px rgba(0, 48, 87, 0.16);
+    cursor: pointer;
+    transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px) scale(0.95);
+    z-index: 10;
+}
+
+/* Show only on hovering the WhatsApp launcher when chat is closed */
+.aquatic-chatbot-container:not(.is-open) .aquatic-chat-toggle:hover ~ .aquatic-chat-teaser,
+.aquatic-chatbot-container:not(.is-open) .aquatic-chat-teaser:hover,
+.aquatic-chatbot-container:not(.is-open):hover .aquatic-chat-teaser {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.aquatic-chat-teaser-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #8fa0b0;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+}
+
+.aquatic-chat-teaser-close:hover {
+    color: #2b3b4c;
+}
+
+.aquatic-chat-teaser-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.aquatic-chat-teaser-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.aquatic-chat-teaser-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #128C7E;
+}
+
+.aquatic-chat-teaser-text {
+    font-size: 12.5px;
+    color: #334e68;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Chat Card Window */
+.aquatic-chat-card {
+    position: absolute;
+    bottom: 78px;
+    right: 0;
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(0, 40, 80, 0.22), 0 0 0 1px rgba(0, 160, 255, 0.12);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px) scale(0.92);
+    transform-origin: bottom right;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.aquatic-chatbot-container.is-open .aquatic-chat-card {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+/* Header */
+.aquatic-chat-header {
+    background: linear-gradient(135deg, #0e5a60 0%, #128C7E 50%, #25D366 100%);
+    padding: 16px 18px;
+    color: #ffffff;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.aquatic-chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.aquatic-chat-avatar-wrap {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #ffffff;
+    padding: 2px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.aquatic-chat-avatar-wrap img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.aquatic-chat-avatar-online {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 11px;
+    height: 11px;
+    background: #00ff88;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+}
+
+.aquatic-chat-title-text {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    color: #ffffff;
+}
+
+.aquatic-chat-status-text {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 3px 0 0 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.aquatic-chat-card-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.aquatic-chat-card-close:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: rotate(90deg);
+}
+
+/* Chat Body */
+.aquatic-chat-body {
+    background: #f4f8fb;
+    padding: 16px;
+    max-height: 340px;
+    overflow-y: auto;
+    background-image: radial-gradient(rgba(119, 194, 243, 0.15) 1px, transparent 1px);
+    background-size: 16px 16px;
+}
+
+.aquatic-chat-timestamp {
+    text-align: center;
+    font-size: 11px;
+    color: #8fa0b0;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.aquatic-chat-msg-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.aquatic-chat-msg-bubble {
+    background: #ffffff;
+    border-radius: 16px 16px 16px 4px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    color: #243b53;
+    line-height: 1.45;
+    box-shadow: 0 4px 12px rgba(0, 48, 87, 0.06);
+    border: 1px solid rgba(119, 194, 243, 0.2);
+}
+
+/* Quick Inquiry Chips */
+.aquatic-chat-chips-label {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #627d98;
+    margin: 10px 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.aquatic-chat-chips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.aquatic-chat-chip-btn {
+    background: #ffffff;
+    border: 1.5px solid rgba(37, 211, 102, 0.4);
+    border-radius: 12px;
+    padding: 9px 12px;
+    font-size: 13px;
+    color: #128C7E;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.aquatic-chat-chip-btn:hover {
+    background: #e8f9f1;
+    border-color: #25D366;
+    color: #0b6357;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.15);
+}
+
+.aquatic-chat-chip-arrow {
+    font-size: 14px;
+    color: #25D366;
+    transition: transform 0.2s ease;
+}
+
+.aquatic-chat-chip-btn:hover .aquatic-chat-chip-arrow {
+    transform: translateX(3px);
+}
+
+/* Footer / Custom Input Row */
+.aquatic-chat-footer {
+    padding: 12px 14px;
+    background: #ffffff;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.aquatic-chat-input {
+    flex: 1;
+    background: #f0f4f8;
+    border: 1.5px solid transparent;
+    border-radius: 20px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #102a43;
+    outline: none;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.aquatic-chat-input:focus {
+    background: #ffffff;
+    border-color: #25D366;
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.15);
+}
+
+.aquatic-chat-send-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #25D366;
+    border: none;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s ease;
+}
+
+.aquatic-chat-send-btn:hover {
+    background: #1eb857;
+    transform: scale(1.08);
+}
+
+.aquatic-chat-send-btn:active {
+    transform: scale(0.92);
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 480px) {
+    .aquatic-chatbot-container {
+        bottom: 16px;
+        right: 16px;
+    }
+    .aquatic-chat-card {
+        width: calc(100vw - 32px);
+        bottom: 74px;
+        right: 0;
+    }
+    .aquatic-chat-teaser {
+        width: calc(100vw - 64px);
+        right: 0;
+    }
+}
+
+/* ==========================================================================
+   PAGE TOP CONTENT CLEARANCE FIX FOR FIXED/ABSOLUTE NAVBAR ON MOBILE
+   ========================================================================== */
+@media screen and (max-width: 991px) {
+    .section_product {
+        padding-top: 110px !important;
+        margin-top: 0 !important;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .section_product {
+        padding-top: 125px !important;
+        margin-top: 0 !important;
+    }
+    .product_details {
+        padding-top: 12px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    .section_product {
+        padding-top: 135px !important;
+        margin-top: 0 !important;
+    }
+}
+
+/* ==========================================================================
+   ELEGANT BRAND LOGO PRELOADER (PURE LOGO, NO BG SHAPE, SEAMLESS TRANSITIONS)
+   ========================================================================== */
+body.aquapets-preloader-active {
+    overflow: hidden !important;
+}
+
+.aquapets-preloader {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background-color: #ffffff;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transition: opacity 0.7s cubic-bezier(0.65, 0, 0.35, 1),
+                visibility 0.7s ease;
+    will-change: opacity, visibility;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.aquapets-preloader-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.aquapets-preloader-logo-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    animation: preloaderFloat 2.8s ease-in-out infinite alternate;
+    will-change: transform;
+}
+
+.aquapets-preloader-logo {
+    display: block;
+    width: clamp(260px, 34vw, 420px);
+    height: auto;
+    max-height: 190px;
+    object-fit: contain;
+    filter: drop-shadow(0 16px 36px rgba(14, 90, 96, 0.14));
+    animation: preloaderLogoEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+               preloaderAuraGlow 2.8s ease-in-out infinite alternate;
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.65s ease;
+    will-change: transform, opacity, filter;
+    pointer-events: none;
+    -webkit-user-drag: none;
+}
+
+/* Subtle luxury shimmer sweep overlay across the logo */
+.aquapets-preloader-shimmer-sweep {
+    position: absolute;
+    inset: -20% -30%;
+    background: linear-gradient(
+        115deg,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0.75) 50%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    animation: preloaderShimmer 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    transform: translateX(-100%);
+    will-change: transform;
+}
+
+/* Preloader Exit Animations */
+.aquapets-preloader.is-loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.aquapets-preloader.is-loaded .aquapets-preloader-logo {
+    transform: scale(1.08) translateY(-8px);
+    opacity: 0;
+    filter: blur(12px) drop-shadow(0 25px 50px rgba(119, 194, 243, 0));
+}
+
+.aquapets-preloader.is-loaded .aquapets-preloader-shimmer-sweep {
+    opacity: 0;
+    animation: none;
+}
+
+/* Keyframe Animations */
+@keyframes preloaderLogoEntrance {
+    0% {
+        opacity: 0;
+        transform: scale(0.85) translateY(14px);
+        filter: blur(8px) drop-shadow(0 4px 10px rgba(14, 90, 96, 0.05));
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0px) drop-shadow(0 16px 36px rgba(14, 90, 96, 0.14));
+    }
+}
+
+@keyframes preloaderFloat {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    100% {
+        transform: translateY(-10px) scale(1.03);
+    }
+}
+
+@keyframes preloaderAuraGlow {
+    0% {
+        filter: drop-shadow(0 14px 30px rgba(14, 90, 96, 0.12));
+    }
+    50% {
+        filter: drop-shadow(0 18px 42px rgba(119, 194, 243, 0.32)) drop-shadow(0 6px 18px rgba(239, 84, 56, 0.15));
+    }
+    100% {
+        filter: drop-shadow(0 20px 48px rgba(14, 90, 96, 0.2));
+    }
+}
+
+@keyframes preloaderShimmer {
+    0% {
+        transform: translateX(-160%) skewX(-18deg);
+    }
+    45%, 100% {
+        transform: translateX(160%) skewX(-18deg);
+    }
+}
+
+/* ==========================================================================
+   REALISTIC SWIMMING FISH CURSOR ENGINE
+   ========================================================================== */
+@media (pointer: fine) {
+    html,
+    body,
+    a,
+    button,
+    input,
+    textarea,
+    select,
+    [role="button"],
+    .w-button,
+    .w-dropdown-toggle,
+    .navbar_link,
+    .footer_link,
+    .hero-stat-card,
+    .product_card {
+        cursor: none !important;
+    }
+}
+
+.aquatic-fish-cursor-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 62px;
+    height: 32px;
+    margin-top: -16px;
+    margin-left: -55px;
+    pointer-events: none !important;
+    z-index: 99999999;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    transform-origin: 55px 16px;
+    will-change: transform, opacity;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.aquatic-fish-cursor-wrap.is-visible {
+    opacity: 1;
+}
+
+.fish-cursor-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-origin: 55px 16px;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+}
+
+.fish-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+/* Fin and tail dynamic rotation anchors */
+.fish-fin-left,
+.fish-fin-right {
+    transform-origin: 40px 16px;
+    transition: transform 0.08s ease-out;
+}
+
+.fish-tail-group {
+    transform-origin: 20px 16px;
+    transition: transform 0.06s ease-out;
+}
+
+/* Interactive Hover State (links, buttons, clickable elements) */
+.aquatic-fish-cursor-wrap.is-hovering .fish-cursor-inner {
+    transform: scale(1.22);
+    filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.85)) drop-shadow(0 0 18px rgba(255, 107, 53, 0.65));
+}
+
+.aquatic-fish-cursor-wrap.is-hovering .fish-mouth-dot {
+    fill: #00e1ff;
+    r: 2.2;
+}
+
+/* Interactive Click / Mousedown Active State */
+.aquatic-fish-cursor-wrap.is-active .fish-cursor-inner {
+    transform: scale(0.88, 1.25);
+    filter: drop-shadow(0 0 12px rgba(255, 107, 53, 0.9));
+}
+
+/* Water Splash Ripple on Click */
+.aquatic-cursor-ripple {
+    position: fixed;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 210, 255, 0.85);
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.3) 0%, rgba(255, 107, 53, 0) 70%);
+    pointer-events: none !important;
+    z-index: 99999998;
+    transform: translate(-50%, -50%) scale(0.2);
+    animation: cursorWaterRipple 0.55s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes cursorWaterRipple {
+    0% {
+        opacity: 0.95;
+        transform: translate(-50%, -50%) scale(0.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2.4);
+    }
+}
+
+/* Micro Swimming Bubble Trail */
+.aquatic-cursor-bubble {
+    position: fixed;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(119, 194, 243, 0.65) 60%, rgba(0, 180, 255, 0.2));
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8), inset 0 0 2px rgba(255, 255, 255, 0.9);
+    pointer-events: none !important;
+    z-index: 99999997;
+    animation: cursorBubbleFloat 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes cursorBubbleFloat {
+    0% {
+        opacity: 0.85;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, calc(-50% - 15px)) scale(0.25);
+    }
+}
+
+@media (pointer: coarse) {
+    .aquatic-fish-cursor-wrap,
+    .aquatic-cursor-ripple,
+    .aquatic-cursor-bubble {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   TEAM SPOTLIGHT SECTION — Ashoury Saxena & future team members
+   ========================================================================== */
+
+.section_team-spotlight {
+    background: linear-gradient(160deg, #f9f5ee 0%, #eef6f5 60%, #e4f0ef 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.section_team-spotlight::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(14, 90, 96, 0.07) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.team-spotlight_header {
+    text-align: center;
+    margin-bottom: 2.75rem;
+}
+
+.team-spotlight_label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #0e5a60;
+    opacity: 0.85;
+    margin-bottom: 0.5rem;
+}
+
+.team-spotlight_title {
+    font-size: clamp(1.75rem, 3vw, 2.35rem);
+    font-weight: 700;
+    color: #0e2b2e;
+    margin: 0;
+}
+
+.team-spotlight_list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.75rem;
+}
+
+.team-spotlight_component {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    background: #fff;
+    border-radius: 24px;
+    padding: 2.75rem 3rem;
+    box-shadow: 0 4px 32px rgba(14, 90, 96, 0.10), 0 1px 4px rgba(0,0,0,0.05);
+    border: 1px solid rgba(14, 90, 96, 0.09);
+    position: relative;
+    overflow: hidden;
+}
+
+.team-spotlight_component::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0e5a60, #1a8a93, #0e5a60);
+    border-radius: 0 0 24px 24px;
+}
+
+/* Image Side */
+.team-spotlight_image-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.team-spotlight_image {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 18px;
+    display: block;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 8px 32px rgba(14, 90, 96, 0.18);
+    border: 3px solid rgba(14, 90, 96, 0.12);
+}
+
+.team-spotlight_image-glow {
+    position: absolute;
+    inset: 12px;
+    border-radius: 18px;
+    background: radial-gradient(ellipse at center, rgba(14, 90, 96, 0.25) 0%, transparent 70%);
+    filter: blur(20px);
+    z-index: 0;
+}
+
+/* Content Side */
+.team-spotlight_content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.team-spotlight_name-wrap {
+    border-left: 4px solid #0e5a60;
+    padding-left: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.team-spotlight_name {
+    font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+    font-weight: 700;
+    color: #0e2b2e;
+    line-height: 1.2;
+    margin: 0 0 0.3rem 0;
+}
+
+.team-spotlight_role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0e5a60;
+    opacity: 0.85;
+}
+
+.team-spotlight_bio {
+    font-size: 0.96rem;
+    line-height: 1.75;
+    color: #3a4a4c;
+    margin: 0;
+}
+
+.team-spotlight_divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(14,90,96,0.2), transparent);
+    margin: 0.25rem 0;
+}
+
+.team-spotlight_tag-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.team-spotlight_tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #0e5a60;
+    background: rgba(14, 90, 96, 0.09);
+    border: 1px solid rgba(14, 90, 96, 0.18);
+    border-radius: 999px;
+    padding: 0.28rem 0.85rem;
+    white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .team-spotlight_component {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1.75rem;
+    }
+
+    .team-spotlight_image-wrap {
+        justify-content: flex-start;
+    }
+
+    .team-spotlight_image {
+        max-width: 200px;
+        aspect-ratio: 1 / 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .team-spotlight_component {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .team-spotlight_image {
+        max-width: 160px;
+    }
+}
+
+/* ==========================================================================
+   VIDEO ELEMENT REPLACEMENTS — same visual behaviour as the images they replace
+   ========================================================================== */
+
+/* Shared video base — mirrors img behaviour */
+video.home-offer_video,
+video.about-follow_video {
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+    background: #0a2e30;
+    pointer-events: none !important;
+    user-select: none !important;
+}
+
+/* home-offer cards: match the image sizing */
+video.home-offer_video {
+    width: 100%;
+    border-radius: 16px;
+    min-height: 240px;
+    max-height: 420px;
+}
+
+/* about-follow: the original .about-follow_image class sets width & aspect-ratio
+   on <img>. <video> elements don't auto-apply those the same way, so we
+   explicitly re-declare them here. Containers stay abs-positioned by Webflow. */
+video.about-follow_video {
+    width: 14rem;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: var(--_sizes---border-radius--ultra, 1.5rem);
+}
+
+video.about-follow_video.small {
+    width: 10rem;
+    border-radius: var(--_sizes---border-radius--xhuge, 1rem);
+}
+
+@media screen and (max-width: 991px) {
+    video.about-follow_video { width: 10rem; }
+}
+
+@media screen and (max-width: 767px) {
+    video.about-follow_video { width: 10rem; }
+}
+
+/* Hide browser-native video overlay controls (PiP, Cast, fullscreen buttons)
+   that appear on hover in Chrome/Edge/Safari */
+video.home-offer_video::-webkit-media-controls,
+video.about-follow_video::-webkit-media-controls,
+video.home-offer_video::-webkit-media-controls-enclosure,
+video.about-follow_video::-webkit-media-controls-enclosure,
+video.home-offer_video::-webkit-media-controls-panel,
+video.about-follow_video::-webkit-media-controls-panel,
+video.home-offer_video::-webkit-media-controls-overlay-cast-button,
+video.about-follow_video::-webkit-media-controls-overlay-cast-button,
+video.home-offer_video::-webkit-media-controls-start-playback-button,
+video.about-follow_video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
