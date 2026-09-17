@@ -659,12 +659,12 @@
     }
 
     // ==========================================
-    // FLOATING AQUATIC CHATBOT ENGINE (WHATSAPP +917011976671)
+    // FLOATING AQUATIC CHATBOT ENGINE (WHATSAPP +919236923025)
     // ==========================================
     function initFloatingChatbot() {
         if (document.querySelector('.aquatic-chatbot-container')) return;
 
-        const whatsappNumber = "917011976671";
+        const whatsappNumber = "919236923025";
         const container = document.createElement('div');
         container.className = 'aquatic-chatbot-container';
         

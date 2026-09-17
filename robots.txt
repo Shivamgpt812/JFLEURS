@@ -1,4 +1,4 @@
-﻿# robots.txt for https://jfleursindia.com
+# robots.txt for https://www.jfleursindia.com
 User-agent: *
 Allow: /
 Disallow: /assets/drafts/
@@ -9,5 +9,5 @@ Disallow: /*?fbclid*
 Crawl-delay: 1
 
 # Host and XML Sitemap definition
-Host: https://jfleursindia.com
-Sitemap: https://jfleursindia.com/sitemap.xml
+Host: https://www.jfleursindia.com
+Sitemap: https://www.jfleursindia.com/sitemap.xml
