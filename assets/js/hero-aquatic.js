@@ -764,7 +764,7 @@
         function openWhatsApp(message) {
             const finalMsg = message && message.trim().length > 0 
                 ? message.trim() 
-                : "Hello JFLEURS Team! I would like more information regarding your pond fish food products.";
+                : "Hello JFLEURS Team! I would like more information regarding your pond fish feed products.";
             const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(finalMsg)}`;
             window.open(url, '_blank', 'noopener,noreferrer');
         }

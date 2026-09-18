@@ -9,7 +9,7 @@
         <priority>1.0</priority>
         <image:image>
             <image:loc>https://www.jfleursindia.com/assets/img/preview.jpg</image:loc>
-            <image:title>JFLEURS INDIA PVT. LTD - Premium Pond Fish Food</image:title>
+            <image:title>JFLEURS INDIA PVT. LTD - Premium Pond Fish Feed</image:title>
             <image:caption>Scientifically formulated premium fish nutrition for vibrant colors and clean water</image:caption>
         </image:image>
     </url>
@@ -40,25 +40,25 @@
 
     <!-- Individual Product Details -->
     <url>
-        <loc>https://www.jfleursindia.com/product-detail.html?slug=1mm-fish-food</loc>
+        <loc>https://www.jfleursindia.com/product-detail.html?slug=1mm-fish-feed</loc>
         <lastmod>2025-05-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
-        <loc>https://www.jfleursindia.com/product-detail.html?slug=2mm-fish-food</loc>
+        <loc>https://www.jfleursindia.com/product-detail.html?slug=2mm-fish-feed</loc>
         <lastmod>2025-05-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
-        <loc>https://www.jfleursindia.com/product-detail.html?slug=3mm-fish-food</loc>
+        <loc>https://www.jfleursindia.com/product-detail.html?slug=3mm-fish-feed</loc>
         <lastmod>2025-05-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>
     </url>
     <url>
-        <loc>https://www.jfleursindia.com/product-detail.html?slug=4mm-fish-food</loc>
+        <loc>https://www.jfleursindia.com/product-detail.html?slug=4mm-fish-feed</loc>
         <lastmod>2025-05-15</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.85</priority>

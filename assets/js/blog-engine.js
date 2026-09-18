@@ -10,7 +10,7 @@
     const ARTICLES = [
         {
             slug: 'choosing-the-best-food-for-your-pet',
-            aliases: ['choosing-the-best-food-for-your-pond-fish', 'choosing-best-fish-food', '1'],
+            aliases: ['choosing-the-best-food-for-your-pond-fish', 'choosing-best-fish-feed', '1'],
             category: 'Aquaculture Nutrition & Feed Science',
             readTime: '6 min read',
             date: 'March 15, 2025',
@@ -20,11 +20,11 @@
             authorCredentials: 'M.F.Sc., Ph.D., FCWF, MAE (Ex-ICAR-NBFGR)',
             title: 'Choosing the Best Food Formula for Your Pond Fish & Aquaculture Farm',
             metaTitle: 'Choosing the Best Food Formula for Pond Fish | JFLEURS Feed Science',
-            metaDescription: 'Expert guide by Dr. Sharad C. Srivastava on choosing floating fish food pellet sizes (1mm-4mm), protein-lipid ratios, and FCR optimization for koi, carps, and farm ponds.',
-            metaKeywords: 'fish food pellet size, 1mm fish food, 2mm fish food, 3mm fish food, 4mm fish food, koi fish food, carp nutrition, feed conversion ratio, aquaculture feed India, Dr Sharad Srivastava, JFLEURS',
+            metaDescription: 'Expert guide by Dr. Sharad C. Srivastava on choosing floating fish feed pellet sizes (1mm-4mm), protein-lipid ratios, and FCR optimization for koi, carps, and farm ponds.',
+            metaKeywords: 'fish feed pellet size, 1mm fish feed, 2mm fish feed, 3mm fish feed, 4mm fish feed, koi fish feed, carp nutrition, feed conversion ratio, aquaculture feed India, Dr Sharad Srivastava, JFLEURS',
             image: '/assets/img/blog/blog-post-1.webp',
-            imageAlt: 'High-protein floating fish food pellets distributed across a pristine koi pond',
-            summary: 'Learn how to select the right fish food formula based on your pond fish species, size, and nutritional requirements for optimal growth, immune resistance, and vibrant coloration without clouding pond water.',
+            imageAlt: 'High-protein floating fish feed pellets distributed across a pristine koi pond',
+            summary: 'Learn how to select the right fish feed formula based on your pond fish species, size, and nutritional requirements for optimal growth, immune resistance, and vibrant coloration without clouding pond water.',
             content: `
                 <div class="blog-lead-paragraph">
                     <p>Nutrition is the single most critical determinant of fish growth velocity, disease resistance, reproductive vigor, and water clarity in both commercial aquaculture systems and ornamental backyard ponds. Choosing the incorrect pellet size or an unscientific nutrient profile leads directly to unconsumed feed decay, elevated Total Ammonia Nitrogen (TAN), and stunted growth rates.</p>
@@ -93,7 +93,7 @@
                     </table>
                 </div>
 
-                <h2 id="section-nutritional-biomarkers">Key Nutritional Biomarkers in Quality Fish Food</h2>
+                <h2 id="section-nutritional-biomarkers">Key Nutritional Biomarkers in Quality Fish Feed</h2>
                 <p>When reviewing guaranteed analysis labels on aquaculture feed packaging, look for balanced formulations designed for freshwater omnivores and carnivores:</p>
                 <div class="blog-checklist">
                     <div class="blog-checklist-item">
